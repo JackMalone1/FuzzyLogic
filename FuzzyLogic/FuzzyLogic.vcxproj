@@ -141,10 +141,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FzzyFuzzifier.cpp" />
+    <ClCompile Include="FzzyLogic.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Fzzy.h" />
+    <ClInclude Include="FzzyFuzzifier.h" />
+    <ClInclude Include="FzzyLogic.h" />
     <ClInclude Include="Game.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

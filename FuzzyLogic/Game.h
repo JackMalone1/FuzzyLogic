@@ -2,7 +2,7 @@
 #define GAME_HPP
 
 #include <SFML/Graphics.hpp>
-
+#include "FzzyLogic.h"
 class Game
 {
 public:
