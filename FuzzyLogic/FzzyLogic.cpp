@@ -13,7 +13,7 @@ namespace Fzzy
 		{
 			return std::max(A, B);
 		}
-		double FuzzyNot(double A, double B)
+		double FuzzyNot(double A)
 		{
 			return 1.0 - A;
 		}

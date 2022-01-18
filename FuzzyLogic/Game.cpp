@@ -6,7 +6,10 @@ Game::Game() :
 	m_window{ sf::VideoMode{ 800U, 600U, 32U }, "SFML Game" },
 	m_exitGame{ false }
 {
-	Fzzy::LogicalOperators::FuzzyOr(1, 2);
+	Fzzy::Fuzzifier::ruleMatrix ruleMatrix;
+	Fzzy::Fuzzifier::SetUpRuleMatrix(ruleMatrix);
+	m_deploy = Fzzy::Fuzzifier::DefuzzifyRuleMatrix(ruleMatrix);
+	std::cout << m_deploy << std::endl;
 }
 
 
