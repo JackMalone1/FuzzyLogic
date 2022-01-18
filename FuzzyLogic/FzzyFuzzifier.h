@@ -6,16 +6,16 @@ namespace Fzzy
 	{
 		struct ruleMatrix
 		{
-			double m_tiny;
-			double m_small;
-			double m_moderate;
-			double m_large;
-			double m_close;
+			double m_tinyForce;
+			double m_smallForce;
+			double m_moderateForce;
+			double m_largeForce;
+			double m_closeDistance;
 			double m_mediumDistance;
-			double m_far;
-			double m_low;
-			double m_medium;
-			double m_high;
+			double m_farDistance;
+			double m_lowAssessment;
+			double m_mediumAssessment;
+			double m_highAssessment;
 			double m_deploy;
 		};
 
