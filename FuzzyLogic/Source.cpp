@@ -14,10 +14,13 @@
 
 
 #include "Game.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctime>
 
 int main()
 {
+	srand(time(NULL));
 	Game game;
 	game.run();
 
