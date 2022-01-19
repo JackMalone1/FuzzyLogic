@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Fzzy.h"
+
 class Game
 {
 public:
@@ -17,6 +18,9 @@ private:
 	void processKeys(sf::Event t_event);
 	void update(sf::Time t_deltaTime);
 	void render();
+
+	void setUpEnemies();
+	void setUpMatrix();
 
 	double m_tiny;
 	double m_small;
