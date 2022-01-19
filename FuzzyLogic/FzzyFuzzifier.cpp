@@ -2,17 +2,20 @@
 
 void Fzzy::Fuzzifier::SetUpRuleMatrix(ruleMatrix& matrix)
 {
-	matrix.m_tinyForce = Fzzy::Fuzzifier::FuzzyTriangle(matrix.m_tiny);
-	matrix.m_smallForce = Fzzy::Fuzzifier::FuzzyTrapezoid(matrix.m_small);
-	matrix.m_moderateForce = Fzzy::Fuzzifier::FuzzyTrapezoid(matrix.m_moderate);
-	matrix.m_largeForce = Fzzy::Fuzzifier::FuzzyGrade(matrix.m_large);
-	matrix.m_closeDistance = Fzzy::Fuzzifier::FuzzyTriangle(matrix.m_close);
-	matrix.m_mediumDistance = Fzzy::Fuzzifier::FuzzyTrapezoid(matrix.m_medium);
-	matrix.m_farDistance = Fzzy::Fuzzifier::FuzzyGrade(matrix.m_far);
-	matrix.m_lowAssessment = Fzzy::LogicalOperators::FuzzyOr(Fzzy::LogicalOperators::FuzzyAnd(matrix.m_mediumDistance, matrix.m_tinyForce),
-		Fzzy::LogicalOperators::FuzzyAnd(matrix.m_mediumDistance, matrix.m_smallForce));
-	matrix.m_mediumAssessment = Fzzy::LogicalOperators::FuzzyAnd(matrix.m_closeDistance, matrix.m_tinyForce);
-	matrix.m_highAssessment = Fzzy::LogicalOperators::FuzzyAnd(matrix.m_closeDistance, Fzzy::LogicalOperators::FuzzyNot(matrix.m_mediumDistance));
+	using namespace Fzzy::LogicalOperators;
+	matrix.m_tinyForce = FuzzyTriangle(matrix.m_tiny);
+	matrix.m_smallForce = FuzzyTrapezoid(matrix.m_small);
+	matrix.m_moderateForce = FuzzyTrapezoid(matrix.m_moderate);
+	matrix.m_largeForce = FuzzyGrade(matrix.m_large);
+	matrix.m_closeDistance = FuzzyTriangle(matrix.m_close);
+	matrix.m_mediumDistance = FuzzyTrapezoid(matrix.m_medium);
+	matrix.m_farDistance = FuzzyGrade(matrix.m_far);
+	matrix.m_lowAssessment = FuzzyOr(FuzzyOr(FuzzyAnd(matrix.m_mediumDistance, matrix.m_tinyForce),
+		FuzzyAnd(matrix.m_mediumDistance, matrix.m_smallForce)),
+		FuzzyAnd(matrix.m_farDistance, FuzzyNot(matrix.m_largeForce)));
+	matrix.m_mediumAssessment = FuzzyOr(FuzzyOr(FuzzyAnd(matrix.m_closeDistance, matrix.m_tinyForce),FuzzyAnd(matrix.m_mediumDistance, matrix.m_moderateForce)),
+		FuzzyAnd(matrix.m_farDistance,matrix.m_largeForce));
+	matrix.m_highAssessment = FuzzyOr(FuzzyAnd(matrix.m_closeDistance, FuzzyNot(matrix.m_tinyForce)), FuzzyAnd(matrix.m_mediumDistance, matrix.m_largeForce));
 }
 
 double Fzzy::Fuzzifier::DefuzzifyRuleMatrix(const ruleMatrix& matrix)
